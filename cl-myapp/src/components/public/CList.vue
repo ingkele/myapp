@@ -1,0 +1,68 @@
+<template>
+  <div class="c-list">
+
+    <router-link v-for="item in list" :key="item.url" :to="item.url">
+      <button :class="isEqual(menuSelect,item)?'select':''" @click="itemChoice(item)" class="c-list-item button">{{item.label}}</button>
+    </router-link>
+  </div>
+</template>
+<script> 
+export default {
+  props: {
+    list: {
+      type: Object
+    },
+  },
+  data() {
+    return {
+      menuSelect: {}
+    }
+  },
+  methods: {
+    itemChoice(val) {
+      this.menuSelect = val;
+    },
+    isEqual(val1, val2) {
+      return this.$utils.isEqual(val1, val2);
+    }
+  },
+  created() {
+    // this.list.forEach(element => {
+    //   if (element.select) {
+    //     this.menuSelect = element
+    //   }
+    // });
+  }
+}
+</script>
+<style lang="scss">
+.c-list {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  .c-list-item {
+    width: 100%;
+    color: white;
+    height: 35px;
+  }
+  .select {
+    background: #96b97d !important;
+  }
+  .button {
+    background: none; /* Green */
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+  }
+  .button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+      0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  }
+}
+</style>

@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noImplicitAny": false, //忽略any类型
+    "allowJs": true, //允许ts文件使用js写法
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "paths": {
+      // 根据别名配置相关路径
+      "@/*": [
+        "./src/*"
+      ],
+      "@page/*": [
+        "./src/page/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@assets*": [
+        "./src/assets/*"
+      ],
+    }
+  },
+  "include": [
+    "src/*",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/TTin-Form/src/Flow"
+  ],
+}
