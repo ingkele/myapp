@@ -4,7 +4,7 @@
     "useDefineForClassFields": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "strict": true,
+    "strict": false,
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
@@ -12,9 +12,16 @@
     "suppressImplicitAnyIndexErrors": true,
     "noImplicitAny": false, //忽略any类型
     "allowJs": true, //允许ts文件使用js写法
+    "noUnusedLocals": false,
+    "strictNullChecks": false, //允许出现null或undefined的可能性。
+    "strictPropertyInitialization": false,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
     "lib": [
       "esnext",
-      "dom"
+      "dom",
+      "dom.iterable",
+      "scripthost"
     ],
     "paths": {
       // 根据别名配置相关路径
@@ -41,6 +48,5 @@
   ],
   "exclude": [
     "node_modules",
-    "src/TTin-Form/src/Flow"
   ],
 }

@@ -12,8 +12,19 @@ const routes: Array<RouteRecordRaw> = [
         component: index
     },
 ]
+//自动注册路由部分
+let clrouter = import.meta.glob(`/src/page/**/*.vue`);
+for (let element in clrouter) {
+    const path = element.split("/").pop().split(".")[0]
+    routes.push({
+        path: "/" + path,
+        name: path,
+        component: () => import(element)
+    })
+}
 const router = createRouter({
     history,
     routes
 })
 export default router
+

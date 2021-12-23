@@ -1,6 +1,5 @@
 <template>
   <div class="c-list">
-
     <router-link v-for="item in list" :key="item.url" :to="item.url">
       <button :class="isEqual(menuSelect,item)?'select':''" @click="itemChoice(item)" class="c-list-item button">{{item.label}}</button>
     </router-link>
@@ -27,11 +26,14 @@ export default {
     }
   },
   created() {
-    // this.list.forEach(element => {
-    //   if (element.select) {
-    //     this.menuSelect = element
-    //   }
-    // });
+    let toName = this.$route.path;
+    for (var x in this.list) {
+      let element = this.list[x];
+      if (this.list[x].url == toName) {
+        this.menuSelect = element;
+        return
+      }
+    };
   }
 }
 </script>

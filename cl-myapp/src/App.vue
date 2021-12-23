@@ -11,7 +11,7 @@
     </div>
     <div class="css-topnav">
       <div class="css-topnav-menu">
-        <router-link v-for="item in menu" :key="item.url" :to="item.url" @click="menuClick(item)">
+        <router-link v-for="item in menu" :key="item.url" :to="item.url">
           <button class="css-topnav-menu-item button">{{item.label}}</button>
         </router-link>
       </div>
@@ -20,9 +20,9 @@
       <div class="css-containet-content">
         <router-view></router-view>
       </div>
-      <!-- <div class="css-containet-column">
-        栏目
-      </div> -->
+      <div class="back_top" @mouseover="enterBackTop" @mouseout="outBackTop" ref="backTop" :style="{ opacity: opacity }" v-show="gotop" @click="handleScrollTop">
+        <span class="iconfont icon-backtotop">顶</span>
+      </div>
     </div>
     <div v-if="menuList" class="css-container-sidebar">
       <c-list :list="menuList"></c-list>
@@ -30,28 +30,91 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 export default {
   name: 'App',
   data() {
     return {
-      menu: this.$store.state.state.menu,
-      menuList: undefined,
+      menuList: null,
+      filled: "",
+      opacity: '0.3',
+      gotop: false,
+      scrollHeight: 100,
+      scrollTop: 0,
     }
   },
-  created() {
-    console.log('objecttest', this.$store.state.state.submenu)
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll, true);  // 注册滚动事件
   },
   methods: {
-    menuClick(val) {
-      console.log(val)
-      this.menuList = this.$store.state.state.submenu[val.submenu];
+    enterBackTop() {
+      this.opacity = '1';
+    },
+    outBackTop() {
+      this.opacity = '0.3';
+    },
+    handleScroll(e) {
+      const that = this;
+      const scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+      that.scrollTop = scrollTop;
+      that.scrollTop > this.scrollHeight
+        ? (this.gotop = true)
+        : (this.gotop = false);
+    },
+    handleScrollTop() {
+      // this.$nextTick(() => {
+      //   this.ele.scrollIntoView({ behavior: 'smooth' });
+      // });
+      const that = this;
+      const timer = setInterval(() => {
+        const ispeed = Math.floor(-that.scrollTop / 5);
+        document.documentElement.scrollTop = document.body.scrollTop =
+          that.scrollTop + ispeed;
+        if (that.scrollTop === 0) {
+          clearInterval(timer);
+        }
+      }, 16);
+    }
+  },
+  computed: {
+    menu() {
+      return this.$store.state.state.menu;
+    }
+  },
+  watch: {
+    $route(to, from) {
+      let submenu = this.$store.state.state.submenu;
+      let toName = to.path;
+      this.filled = toName;
+      for (var x in this.menu) {
+        if (this.menu[x].url == toName) {
+          this.menuList = submenu[this.menu[x].submenu];
+          return
+        } else {
+          for (var y in submenu) {
+            for (var i in submenu[y]) {
+              if (submenu[y][i].url == toName) {
+                let ss = submenu[y];
+                this.menuList = ss;
+                return
+              }
+            }
+
+          }
+        }
+      }
     },
   },
 }
 </script>
 
 <style lang="scss">
+html {
+  overflow-y: overlay;
+}
 .css-app {
   height: 100%;
   .css-header {
@@ -77,10 +140,11 @@ export default {
     }
   }
   .css-topnav {
-    width: 100%;
+    width: 90%;
     height: 5vh;
     float: left;
     background: #96b97d;
+    margin: 0 5vw 0 5vw;
     .css-topnav-menu {
       padding: 0px 11%;
       display: flex;
@@ -113,6 +177,18 @@ export default {
     float: right;
     width: 63vw;
     padding-right: 7vw;
+    .back_top {
+      width: 50px;
+      height: 50px;
+      background: rgb(126, 120, 120);
+      position: fixed;
+      right: 50px;
+      bottom: 36px;
+      font-size: 20px;
+      color: black;
+      text-align: center;
+      line-height: 50px;
+    }
   }
   .css-container-sidebar {
     position: relative;
