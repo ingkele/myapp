@@ -1,3 +1,7 @@
 .floatleft {
     float: left;
 }
+
+pre code.hljs {
+    font-size: 16px;
+}

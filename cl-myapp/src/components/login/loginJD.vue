@@ -8,33 +8,75 @@
         <label>京东登录注册</label>
       </div>
       <div class="cl-login-loginbar">
-        <div class="cl-login-login-input">
-          <div class="login-input-row">
-            <select>
-              <option>+86</option>
-              <option>+89</option>
-            </select>
-            <!--右侧带图标的输入框,长度限制为40个字符,禁止输入表情和某一些特殊元素 -->
-            <div class="input-co-type">
-              <input type="text" placeholder="请输入手机号" class="input-type" @focusout="isselect=false" @focus="isselect=true" />
-              <div v-if="isselect" class="inputicon" @click="clearvalue">
-                <label for="">x</label>
+        <form action="" method="post" autocomplete="on">
+          <div class="cl-login-login-input" v-if="model=='code'">
+            <div class="login-input-row">
+              <select>
+                <option>+86</option>
+                <option>+89</option>
+              </select>
+              <!--右侧带图标的输入框,长度限制为40个字符,禁止输入表情和某一些特殊元素 -->
+              <div class="input-co-type">
+                <input type="text" placeholder="请输入手机号" required class="input-type" @focusout="isselect=false" @focus="isselect=true" />
+                <div v-if="isselect" class="inputicon" @click="clearvalue($event)">
+                  <label for="">x</label>
+                </div>
               </div>
             </div>
+            <div class="login-input-row">
+              <div class="input-co-type">
+                <input type="text" placeholder="请输入验证码" class="input-type" @focusout="isphoneselect=false" @focus="isphoneselect=true" />
+                <div v-if="isphoneselect" class="inputicon" @click="clearvalue($event)">
+                  <label for="">x</label>
+                </div>
+              </div>
+              <button class="cl-login-code">获取验证码</button>
+            </div>
           </div>
-          <div class="login-input-row">
-            <div class="input-co-type">
-              <input type="text" placeholder="请输入手机号" class="input-type" @focusout="isphoneselect=false" @focus="isphoneselect=true" />
-              <div v-if="isphoneselect" class="inputicon" @click="clearvalue">
-                <label for="">x</label>
+          <div class="cl-login-login-input" v-else-if="model=='user'">
+            <div class="login-input-row">
+              <!--右侧带图标的输入框,长度限制为40个字符,禁止输入表情和某一些特殊元素 -->
+              <div class="input-co-type">
+                <input type="text" placeholder="账号/邮箱/手机号" class="input-type" @focusout="isselect=false" @focus="isselect=true" />
+                <div v-if="isselect" class="inputicon" @click="clearvalue($event)">
+                  <label for="">x</label>
+                </div>
               </div>
             </div>
-            <button class="cl-login-code">获取验证码</button>
+            <div class="login-input-row">
+              <div class="input-co-type">
+                <input :type="pwdType" placeholder="请输入密码" class="input-type" @focusout="isphoneselect=false" @focus="isphoneselect=true" />
+                <div v-if="isphoneselect" class="inputicon" @click="clearvalue($event)">
+                  <label for="">x</label>
+                </div>
+                <div class="inputicon">
+                  <span v-if="SwitchPassDis=='show'" @click="changeType">
+                    <svg t="1640594358268" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="20522" width="200" height="200">
+                      <path
+                        d="M935 510.7c-0.9-36.4-14.1-72.1-38-103.3-17.8-23.1-67.3-82.1-145.1-133.5-78.7-52-158.7-78.3-237.8-78.3-79.2 0-159.3 26.4-238 78.3-77.8 51.4-127.5 110.5-145.2 133.5l-0.1 0.2-0.1 0.2C107 439 94 474.9 93.1 511.8v3.8c0.9 36.2 13.9 71.8 37.6 103l0.1 0.2 0.1 0.2c17.7 23 67.3 82.1 145.1 133.5 78.7 52 158.7 78.3 237.9 78.3 79.2 0 159.3-26.4 238-78.4C829.7 701 879.3 642 897 618.9c24-31.2 37.1-67.2 38-104.3v-3.9z m-42.7 2.9c-0.7 27.9-10.8 55.4-29.2 79.3-16.4 21.3-62.3 76-134.8 123.9-71.6 47.3-143.7 71.3-214.4 71.3-70.7 0-142.8-24-214.4-71.3-72.4-47.8-118.3-102.6-134.7-123.9v-0.2c-18.3-24-28.3-51.1-28.9-78.2v-1.6c0.7-27.8 10.6-55.2 29-79.3 16.4-21.3 62.4-76.1 134.9-123.9 71.6-47.3 143.8-71.3 214.5-71.3 70.6 0 142.7 24 214.3 71.3C801 357.5 847 412.3 863.4 433.6c18.4 23.9 28.5 51 29.2 78.4v0.9l-0.3 0.7z"
+                        p-id="20523"></path>
+                      <path
+                        d="M514 330.8c-100.6 0-182.4 81.8-182.4 182.4S413.4 695.6 514 695.6c100.6 0 182.4-81.8 182.4-182.4S614.6 330.8 514 330.8z m0 322.1c-77 0-139.7-62.7-139.7-139.7S437 373.5 514 373.5c77 0 139.7 62.7 139.7 139.7S591 652.9 514 652.9z"
+                        p-id="20524"></path>
+                    </svg>
+                  </span>
+                  <span v-if="SwitchPassDis=='hide'" @click="changeType">
+                    <svg t="1640594393048" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="20661" width="200" height="200">
+                      <path
+                        d="M512.013303 568.954153c-182.932356 0-353.458147-90.019223-445.067588-234.926544-5.915733-9.330506-3.127224-21.710464 6.228865-27.599591 9.330506-5.942339 21.710464-3.127224 27.599591 6.228865 84.337827 133.38694 241.911632 216.265532 411.238109 216.265532s326.900282-82.878592 411.212526-216.265532c5.89015-9.330506 18.243503-12.171204 27.599591-6.228865 9.356089 5.89015 12.144598 18.270109 6.228865 27.599591C865.497033 478.933907 694.944636 568.954153 512.013303 568.954153zM350.139565 720.688973c-1.511423 0-3.075035-0.12996-4.613064-0.390903-14.516622-2.554172-24.238031-16.366759-21.710464-30.884404l24.472368-140.111085c2.527566-14.516622 16.445554-24.238031 30.884404-21.710464 14.516622 2.554172 24.238031 16.366759 21.710464 30.884404l-24.472368 140.111085C374.143259 711.567221 362.858238 720.688973 350.139565 720.688973zM670.342308 720.688973c-12.405541 0-23.508413-8.67866-26.114774-21.292955l-28.903284-140.111085c-2.970658-14.43885 6.306636-28.564569 20.745487-31.535227 14.386662-2.919493 28.564569 6.306636 31.535227 20.745487l28.903284 140.111085c2.970658 14.43885-6.306636 28.564569-20.745487 31.535227C673.938206 720.506824 672.140257 720.688973 670.342308 720.688973zM136.610354 617.273648c-3.049452 0-6.124488-0.520863-9.148357-1.6158-13.839193-5.056156-20.979824-20.38119-15.923668-34.220383l51.160193-140.111085c5.056156-13.891382 20.406772-20.954241 34.220383-15.923668 13.839193 5.056156 20.979824 20.38119 15.923668 34.220383l-51.160193 140.111085C157.720138 610.575086 147.504472 617.273648 136.610354 617.273648zM883.871519 640.625496c-10.607592 0-20.641109-6.385431-24.811082-16.836457l-55.591109-140.111085c-5.420453-13.709233 1.277086-29.216415 14.959713-34.663474 13.682627-5.421476 29.189809 1.277086 34.663474 14.959713l55.591109 140.111085c5.420453 13.709233-1.277086 29.216415-14.959713 34.663474C890.491287 640.025838 887.155309 640.625496 883.871519 640.625496z"
+                        p-id="20662"></path>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+              <button class="cl-login-code">忘记密码</button>
+            </div>
           </div>
-        </div>
-        <button class="cl-login-subimt">登 录</button>
+          <button class="cl-login-subimt" type="submit">登 录</button>
+        </form>
         <p class="quick-btn">
-          <span class="J_ping planBLogin">账号密码登录</span>
+          <span class="J_ping planBLogin" v-if="model=='code'" @click="model='user'">账号密码登录</span>
+          <span class="J_ping planBLogin" v-if="model=='user'" @click="model='code'">短信验证码登录</span>
           <span class="J_ping quickReg">手机快速注册</span>
         </p>
       </div>
@@ -46,13 +88,19 @@
           <a class="Iphone">苹果</a>
         </div>
         <div class="JD-agreement">
-          <p>
+          <p v-if="model=='code'">
             <input type="checkbox" class="policy_tip-checkbox">
             <span>若您输入的手机号未注册，将为您直接注册，注册即视为同意</span>
             <span>
               <a href="#">京东用户注册协议</a>
               <span>、</span>
             </span>
+            <a href="#">用户隐私政策</a>
+          </p>
+
+          <p v-else>
+            <input type="checkbox" class="policy_tip-checkbox">
+            <span>登录即代表您已同意</span>
             <a href="#">用户隐私政策</a>
           </p>
         </div>
@@ -64,13 +112,26 @@
 export default {
   data() {
     return {
+      SwitchPassDis: "hide",
+      model: "user",
       isselect: false,
       isphoneselect: false,
+      pwdType: "password",
     }
   },
   methods: {
     back() {
       this.$emit("back")
+    },
+    clearvalue(e) {
+      console.log( //获得点击元素的前一个元素
+        e.currentTarget.previousElementSibling.value
+      )
+      e.currentTarget.previousElementSibling.value = "";
+    },
+    changeType() {
+      this.pwdType = this.pwdType === 'password' ? 'text' : 'password';
+      this.SwitchPassDis = this.SwitchPassDis === 'hide' ? 'show' : 'hide';
     }
   }
 }
@@ -136,17 +197,25 @@ export default {
       text-align: left;
       .input-co-type {
         position: relative;
-        width: auto;
+        width: 100%;
         display: flex;
         .input-type {
           width: 100%;
         }
         .inputicon {
+          display: flex;
           label {
             color: #6c71768c;
-            position: absolute;
-            top: 25%;
+            position: relative;
             right: 15px;
+            align-self: center;
+          }
+          span {
+            align-self: center;
+          }
+          .icon {
+            width: 20px;
+            height: 20px;
           }
         }
       }
@@ -154,7 +223,7 @@ export default {
         border: none;
         background: none;
         font-size: 12px;
-        width: 38%;
+        width: 44%;
         border-left: 1px solid #6c71768c;
       }
       select,
