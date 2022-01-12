@@ -6,13 +6,13 @@
         <h1 class="app-title">常用前端</h1>
       </div>
       <div class="css-header-search">
-        <input class="css-header-search-input" type="text">
+        <input class="css-header-search-input" type="text" />
       </div>
     </div>
     <div class="css-topnav">
       <div class="css-topnav-menu">
         <router-link v-for="item in menu" :key="item.url" :to="item.url">
-          <button class="css-topnav-menu-item button">{{item.label}}</button>
+          <button class="css-topnav-menu-item button">{{ item.label }}</button>
         </router-link>
       </div>
     </div>
@@ -20,12 +20,20 @@
       <div class="css-containet-content">
         <router-view></router-view>
       </div>
-      <div class="back_top" @mouseover="enterBackTop" @mouseout="outBackTop" ref="backTop" :style="{ opacity: opacity }" v-show="gotop" @click="handleScrollTop">
+      <div
+        class="back_top"
+        @mouseover="enterBackTop"
+        @mouseout="outBackTop"
+        ref="backTop"
+        :style="{ opacity: opacity }"
+        v-show="gotop"
+        @click="handleScrollTop"
+      >
         <span class="iconfont icon-backtotop">顶</span>
       </div>
     </div>
     <div v-if="menuList" class="css-container-sidebar">
-      <c-list :list="menuList"></c-list>
+      <cl-list :list="menuList"></cl-list>
     </div>
   </div>
 </template>
@@ -35,7 +43,7 @@ export default {
   name: 'App',
   data() {
     return {
-      menuList: null,
+      // menuList: null,
       filled: "",
       opacity: '0.3',
       gotop: false,
@@ -82,6 +90,9 @@ export default {
   computed: {
     menu() {
       return this.$store.state.state.menu;
+    },
+    menuList() {
+      return this.$store.state.submenu;
     }
   },
   watch: {
@@ -91,14 +102,18 @@ export default {
       this.filled = toName;
       for (var x in this.menu) {
         if (this.menu[x].url == toName) {
-          this.menuList = submenu[this.menu[x].submenu];
+          this.$store.dispatch("setSubMenu", {
+            menu: submenu[this.menu[x].submenu]
+          })
           return
         } else {
           for (var y in submenu) {
             for (var i in submenu[y]) {
               if (submenu[y][i].url == toName) {
                 let ss = submenu[y];
-                this.menuList = ss;
+                this.$store.dispatch("setSubMenu", {
+                  menu: ss
+                })
                 return
               }
             }

@@ -1,11 +1,16 @@
 let sysConfig = {
     menu: [
-        { url: "/", label: "首页", submenu: null },
+        { url: "/", label: "首页", submenu: "home" },
         { url: "/index", label: "移动端常用组件", submenu: "appMenu" },
         { url: "/Vite", label: "PC端常用组件", submenu: "pcMenu" },
         { url: "/Vue", label: "Vue配置", submenu: "VueMenu" },
     ],
     submenu: {
+        home: [
+            { url: "/", label: "div+css命名大全", select: true },
+            { url: "/html", label: "html常识" },
+            { url: "/css", label: "css基础" },
+        ],
         appMenu: [
             { url: "/login", label: "常用登录界面", select: true },
             { url: "/ffindex", label: "头部导航" },

@@ -1,11 +1,15 @@
 <template>
   <div class="c-list">
     <router-link v-for="item in list" :key="item.url" :to="item.url">
-      <button :class="isEqual(menuSelect,item)?'select':''" @click="itemChoice(item)" class="c-list-item button">{{item.label}}</button>
+      <button
+        :class="isEqual(menuSelect, item) ? 'select' : ''"
+        @click="itemChoice(item)"
+        class="c-list-item button"
+      >{{ item.label }}</button>
     </router-link>
   </div>
 </template>
-<script> 
+<script>
 export default {
   props: {
     list: {
@@ -25,15 +29,18 @@ export default {
       return this.$utils.isEqual(val1, val2);
     }
   },
-  created() {
-    let toName = this.$route.path;
-    for (var x in this.list) {
-      let element = this.list[x];
-      if (this.list[x].url == toName) {
-        this.menuSelect = element;
-        return
-      }
-    };
+  watch: {
+    list(val, nv) {
+      let toName = this.$route.path;
+      for (var x in val) {
+        let element = val[x];
+        console.log(element.url, toName)
+        if (element.url == toName) {
+          this.menuSelect = element;
+          return
+        }
+      };
+    }
   }
 }
 </script>
