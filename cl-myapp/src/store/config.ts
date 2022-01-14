@@ -1,8 +1,8 @@
 let sysConfig = {
     menu: [
         { url: "/", label: "首页", submenu: "home" },
-        { url: "/index", label: "移动端常用组件", submenu: "appMenu" },
-        { url: "/Vite", label: "PC端常用组件", submenu: "pcMenu" },
+        { url: "/app", label: "移动端常用组件", submenu: "appMenu" },
+        { url: "/pc", label: "PC端常用组件", submenu: "pcMenu" },
         { url: "/Vue", label: "Vue配置", submenu: "VueMenu" },
     ],
     submenu: {

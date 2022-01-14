@@ -5,6 +5,7 @@ export default defineConfig({
   plugins: [
     vue(),
   ],
+  base: '/',
   resolve: {
     alias: {//设置别名
       '@': '/src',
@@ -12,7 +13,8 @@ export default defineConfig({
       '@components': '/src/components',
       '@assets': '/src/assets',
       '@modules': 'node_modules',
-    }
+      '@router': '/src/router',
+    },
   },
   server: {
     host: '0.0.0.0',

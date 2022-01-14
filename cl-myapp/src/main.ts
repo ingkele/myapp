@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from "./router"
+import router from "@router/index"
 import utils from '@/ts/utils'
 import store from '@/store/index'
 import Components from '@components/index'
@@ -13,6 +13,7 @@ import hljsVuePlugin from '@highlightjs/vue-plugin'
 
 
 const app = createApp(App)
+
 app.config.globalProperties.$utils = utils;
 
 app.use(router)

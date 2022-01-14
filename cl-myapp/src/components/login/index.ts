@@ -1,5 +1,5 @@
-import login1 from './login1.vue';
-import loginJD from './loginJD.vue';
+import login1 from '@components/login/login1.vue';
+import loginJD from '@components/login/loginJD.vue';
 // 这里是重点
 const clpublic = {
     install: function (Vue) {

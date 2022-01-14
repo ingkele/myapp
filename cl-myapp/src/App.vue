@@ -32,7 +32,7 @@
         <span class="iconfont icon-backtotop">顶</span>
       </div>
     </div>
-    <div v-if="menuList" class="css-container-sidebar">
+    <div v-if="menuList" :class="!gotop ? 'css-container-sidebar' : 'css-container-sidebar-gotop'">
       <cl-list :list="menuList"></cl-list>
     </div>
   </div>
@@ -69,7 +69,7 @@ export default {
         document.body.scrollTop;
       that.scrollTop = scrollTop;
       that.scrollTop > this.scrollHeight
-        ? (this.gotop = true)
+        ? (this.gotop = true, console.log(11112))
         : (this.gotop = false);
     },
     handleScrollTop() {
@@ -122,7 +122,7 @@ export default {
         }
       }
     },
-  },
+  }
 }
 </script>
 
@@ -210,13 +210,24 @@ html {
     top: 1vh;
     left: 12vw;
     width: 15vw;
-    height: 75vh;
+    height: 82vh;
     background: rgb(156 161 153 / 22%);
     overflow-x: hidden;
     overflow-y: scroll;
   }
   .css-container-sidebar::-webkit-scrollbar {
     display: none;
+  }
+
+  .css-container-sidebar-gotop {
+    position: fixed;
+    top: 1vh;
+    left: 12.5vw;
+    width: 15vw;
+    height: 98vh;
+    background: rgb(156 161 153 / 22%);
+    overflow-x: hidden;
+    overflow-y: hidden;
   }
   .css-containet-column {
     margin-top: 1vh;

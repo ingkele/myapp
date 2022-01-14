@@ -34,14 +34,33 @@ export default {
       let toName = this.$route.path;
       for (var x in val) {
         let element = val[x];
-        console.log(element.url, toName)
+        if (element.url == toName) {
+          this.menuSelect = element;
+          return
+        }
+      };
+    },
+    $route(to, from) {
+      let toName = to.path;
+      let val = this.list;
+      for (var x in val) {
+        let element = val[x];
         if (element.url == toName) {
           this.menuSelect = element;
           return
         }
       };
     }
-  }
+  },
+  created() {
+    //在页面加载时读取localStorage里的状态信息
+    localStorage.getItem("menustate") && this.$store.replaceState(Object.assign(this.$store.state, JSON.parse(localStorage.getItem("menustate"))));
+
+    //在页面刷新时将vuex里的信息保存到localStorage里
+    window.addEventListener("beforeunload", () => {
+      localStorage.setItem("menustate", JSON.stringify(this.$store.state))
+    })
+  },
 }
 </script>
 <style lang="scss">

@@ -1,5 +1,5 @@
 import { createStore, } from "vueX";
-import state from './config'
+import state from '@/store/config'
 const store = createStore({
     state: {
         //这里放全局参数
