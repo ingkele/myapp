@@ -5,11 +5,23 @@ const store = createStore({
         //这里放全局参数
         state,
         submenu: {},
+        count: 1
     },
     mutations: {
         //这里是set方法
+        //    mutations 接受 state 作为其第一个参数
+        increment(state, n) {
+            // 变更状态
+            state.count + n
+        }
+        //调用示例 store.commit('increment', 10)
     },
-    getters: {        //这里是get方法   },
+    getters: {
+        //这里是get方法
+        //Getter 接受 state 作为其第一个参数
+        doneTodos: (state) => {
+            return state.count
+        }
     },
     actions: {
         //加载待办数据,预加载请求写入这里

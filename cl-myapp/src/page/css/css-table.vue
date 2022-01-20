@@ -108,12 +108,6 @@
                     </div>
                 </div>
                 <br />
-                <a
-                    target="_blank"
-                    href="/try/try.php?filename=trycss_table_border"
-                    class="tryitbtn"
-                    rel="noopener"
-                >尝试一下 »</a>
             </div>
 
             <p>请注意，在上面的例子中的表格有双边框。这是因为表和th/ td元素有独立的边界。</p>
@@ -157,12 +151,6 @@
                     </div>
                 </div>
                 <br />
-                <a
-                    target="_blank"
-                    href="/try/try.php?filename=trycss_table_border-collapse"
-                    class="tryitbtn"
-                    rel="noopener"
-                >尝试一下 »</a>
             </div>
             <br />
             <hr />
@@ -198,12 +186,6 @@
                     </div>
                 </div>
                 <br />
-                <a
-                    target="_blank"
-                    class="tryitbtn"
-                    href="/try/try.php?filename=trycss_table_width"
-                    rel="noopener"
-                >尝试一下 »</a>
             </div>
             <br />
             <hr />
@@ -227,12 +209,6 @@
                     </div>
                 </div>
                 <br />
-                <a
-                    target="_blank"
-                    class="tryitbtn"
-                    href="/try/try.php?filename=trycss_table_align"
-                    rel="noopener"
-                >尝试一下 »</a>
             </div>
 
             <p>垂直对齐属性设置垂直对齐，比如顶部，底部或中间：</p>
@@ -257,12 +233,6 @@
                     </div>
                 </div>
                 <br />
-                <a
-                    target="_blank"
-                    class="tryitbtn"
-                    href="/try/try.php?filename=trycss_table_vertical-align"
-                    rel="noopener"
-                >尝试一下 »</a>
             </div>
             <br />
             <hr />
@@ -286,12 +256,6 @@
                     </div>
                 </div>
                 <br />
-                <a
-                    target="_blank"
-                    class="tryitbtn"
-                    href="/try/try.php?filename=trycss_table_padding"
-                    rel="noopener"
-                >尝试一下 »</a>
             </div>
             <br />
             <hr />
@@ -337,43 +301,9 @@
                     </div>
                 </div>
                 <br />
-                <a
-                    target="_blank"
-                    class="tryitbtn"
-                    href="/try/try.php?filename=trycss_table_color"
-                    rel="noopener"
-                >尝试一下 »</a>
             </div>
             <br />
             <hr />
-
-            <div class="tryit_ex">
-                <img
-                    loading="lazy"
-                    src="/images/tryitimg.gif"
-                    width="40"
-                    height="46px"
-                    alt="Examples"
-                />
-                <h2>更多实例</h2>
-            </div>
-            <p>
-                <a
-                    target="_blank"
-                    href="/try/try.php?filename=trycss_table_fancy"
-                    rel="noopener"
-                >制作一个个性表格</a>
-                <br />这个例子演示了如何创建一个个性的表格。
-            </p>
-            <p>
-                <a
-                    target="_blank"
-                    href="/try/try.php?filename=trycss_table_caption-side"
-                    rel="noopener"
-                >设置表格标题的位置</a>
-                <br />这个例子演示了如何定位表格标题。
-            </p>
-            <!-- 其他扩展 -->
         </div>
     </div>
 </template>
