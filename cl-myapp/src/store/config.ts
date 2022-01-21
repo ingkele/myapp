@@ -3,7 +3,8 @@ let sysConfig = {
         { url: "/", label: "首页", submenu: "home" },
         { url: "/app", label: "移动端常用组件", submenu: "appMenu" },
         { url: "/pc", label: "PC端常用组件", submenu: "pcMenu" },
-        { url: "/Vue", label: "Vue配置", submenu: "VueMenu" },
+        { url: "/Vue3", label: "Vue3配置", submenu: "Vue3Menu" },
+        { url: "/Vue2", label: "Vue3配置", submenu: "Vue2Menu" },
     ],
     submenu: {
         home: [
@@ -16,17 +17,21 @@ let sysConfig = {
             { url: "/ffindex", label: "头部导航" },
             { url: "", label: "底部导航" },
         ],
-        VueMenu: [
+        Vue3Menu: [
             { url: "/viteconfig", label: "vite.config.ts配置", select: true },
             { url: "/tsconfig", label: "tsconfig.json配置" },
             { url: "/store", label: "store配置" },
             { url: "/router", label: "router自动化路由配置" },
+            { url: "/axios", label: "axios请求封装" },
+        ],
+        Vue2Menu: [
+            { url: "/viteconfig", label: "webpack.js配置", select: true },
+            { url: "/store", label: "store配置" },
+            { url: "/router", label: "router自动化路由配置" },
+            { url: "/axios", label: "axios请求封装" },
         ],
         pcMenu: [
             { url: "/tabs", label: "tabs", select: true },
-            { url: "/tsconfig", label: "tsconfig.json配置" },
-            { url: "/store", label: "store配置" },
-            { url: "/router", label: "router自动化路由配置" },
         ],
     },
 }
