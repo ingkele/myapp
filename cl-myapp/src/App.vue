@@ -32,7 +32,10 @@
         <span class="iconfont icon-backtotop">顶</span>
       </div>
     </div>
-    <div v-if="menuList" :class="!gotop ? 'css-container-sidebar' : 'css-container-sidebar-gotop'">
+    <div
+      v-if="menuList"
+      :class="!gotop ? 'css-container-sidebar' : 'css-container-sidebar-gotop'"
+    >
       <cl-list :list="menuList"></cl-list>
     </div>
   </div>
@@ -40,26 +43,26 @@
 
 <script>
 export default {
-  name: 'App',
+  name: "App",
   data() {
     return {
       // menuList: null,
       filled: "",
-      opacity: '0.3',
+      opacity: "0.3",
       gotop: false,
       scrollHeight: 100,
       scrollTop: 0,
-    }
+    };
   },
   mounted() {
-    window.addEventListener('scroll', this.handleScroll, true);  // 注册滚动事件
+    window.addEventListener("scroll", this.handleScroll, true); // 注册滚动事件
   },
   methods: {
     enterBackTop() {
-      this.opacity = '1';
+      this.opacity = "1";
     },
     outBackTop() {
-      this.opacity = '0.3';
+      this.opacity = "0.3";
     },
     handleScroll(e) {
       const that = this;
@@ -69,7 +72,7 @@ export default {
         document.body.scrollTop;
       that.scrollTop = scrollTop;
       that.scrollTop > this.scrollHeight
-        ? (this.gotop = true, console.log(11112))
+        ? ((this.gotop = true), console.log(11112))
         : (this.gotop = false);
     },
     handleScrollTop() {
@@ -85,7 +88,7 @@ export default {
           clearInterval(timer);
         }
       }, 16);
-    }
+    },
   },
   computed: {
     menu() {
@@ -93,7 +96,7 @@ export default {
     },
     menuList() {
       return this.$store.state.submenu;
-    }
+    },
   },
   watch: {
     $route(to, from) {
@@ -103,27 +106,26 @@ export default {
       for (var x in this.menu) {
         if (this.menu[x].url == toName) {
           this.$store.dispatch("setSubMenu", {
-            menu: submenu[this.menu[x].submenu]
-          })
-          return
+            menu: submenu[this.menu[x].submenu],
+          });
+          return;
         } else {
           for (var y in submenu) {
             for (var i in submenu[y]) {
               if (submenu[y][i].url == toName) {
                 let ss = submenu[y];
                 this.$store.dispatch("setSubMenu", {
-                  menu: ss
-                })
-                return
+                  menu: ss,
+                });
+                return;
               }
             }
-
           }
         }
       }
     },
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss">

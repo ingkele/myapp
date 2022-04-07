@@ -4,7 +4,7 @@ let sysConfig = {
         { url: "/app", label: "移动端常用组件", submenu: "appMenu" },
         { url: "/pc", label: "PC端常用组件", submenu: "pcMenu" },
         { url: "/Vue3", label: "Vue3配置", submenu: "Vue3Menu" },
-        { url: "/Vue2", label: "Vue3配置", submenu: "Vue2Menu" },
+        { url: "/Vue2", label: "Vue2配置", submenu: "Vue2Menu" },
     ],
     submenu: {
         home: [
@@ -25,10 +25,11 @@ let sysConfig = {
             { url: "/axios", label: "axios请求封装" },
         ],
         Vue2Menu: [
-            { url: "/viteconfig", label: "webpack.js配置", select: true },
-            { url: "/store", label: "store配置" },
-            { url: "/router", label: "router自动化路由配置" },
-            { url: "/axios", label: "axios请求封装" },
+            { url: "/webpack", label: "webpack.js配置", select: true },
+            { url: "/vue2store", label: "store配置" },
+            { url: "/vue2router", label: "router自动化路由配置" },
+            { url: "/vue2axios", label: "axios请求封装" },
+            { url: "/storage", label: "storage缓存封装", },
         ],
         pcMenu: [
             { url: "/tabs", label: "tabs", select: true },
