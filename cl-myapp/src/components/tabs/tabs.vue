@@ -1,9 +1,19 @@
 <template>
   <div class="tab-guid">
     <div class="tab-guid-item">
-      <div class="tab-guid-item-button" v-for="(item,index) in navList" :key="index">
-        <div v-if="currentValue==index" class="tab-guid-item-label"></div>
-        <button class="button" :class="currentValue==index?'onceTab':''" @click="once(index)">{{item.title}}</button>
+      <div
+        class="tab-guid-item-button"
+        v-for="(item, index) in navList"
+        :key="index"
+      >
+        <div v-if="currentValue == index" class="tab-guid-item-label"></div>
+        <button
+          class="button"
+          :class="currentValue == index ? 'onceTab' : ''"
+          @click="once(index)"
+        >
+          {{ item.title }}
+        </button>
       </div>
     </div>
   </div>
@@ -21,17 +31,17 @@ export default {
     return {
       currentValue: this.value,
       navList: [],
-      spane: []
-    }
+      spane: [],
+    };
   },
   methods: {
     once(item) {
       this.currentValue = item;
-      let nav = this.navList[item]
-      let index = nav.index
-      this.currentValue = item
-      this.$emit('input', item)
-      this.$emit('on-click', item)
+      let nav = this.navList[item];
+      let index = nav.index;
+      this.currentValue = item;
+      this.$emit("input", item);
+      this.$emit("on-click", item);
     },
     getTabs() {
       //获取pane
@@ -40,41 +50,39 @@ export default {
     },
     updateNav() {
       //获取标题，name,并放置到navList数组中
-      this.navList = []
+      this.navList = [];
       let _this = this;
       this.getTabs().forEach(function (pane, index) {
         _this.navList.push({
           title: pane.props.title,
-          index: index
-
-        })
+          index: index,
+        });
         if (index === 0) {
-          _this.currentValue = index
+          _this.currentValue = index;
         }
-      })
-      this.updateStatus()
+      });
+      this.updateStatus();
     },
     updateStatus() {
-      let tabs = this.getTabs()
-      let _this = this
+      let tabs = this.getTabs();
+      let _this = this;
       tabs.forEach(function (tab, index) {
-        let b = index === _this.currentValue
-        tab.type.data().show = b
-        console.log(tab)
-        _this.$forceUpdate()
-        return tab.type.data().show
-      })
-    }
+        let b = index === _this.currentValue;
+        tab.type.data().show = b;
+        _this.$forceUpdate();
+        return tab.type.data().show;
+      });
+    },
   },
   watch: {
     value: function (val) {
-      this.currentValue = val
+      this.currentValue = val;
     },
     currentValue() {
-      this.updateStatus()
-    }
-  }
-}
+      this.updateStatus();
+    },
+  },
+};
 </script>
 
 <style lang="scss">

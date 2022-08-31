@@ -1,46 +1,46 @@
 <template>
   <div class="pane" v-show="show">
-    {{title}}
-    {{show}}
+    {{ title }}
+    {{ show }}
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'tabs-pane',
+  name: "tabs-pane",
   props: {
     title: {
       type: String,
-      default: ''
+      default: "",
     },
   },
   data() {
     return {
-      show: true
-    }
+      show: true,
+    };
   },
   methods: {
     updateNav() {
-      this.$parent.updateNav()
-    }
+      this.$parent.updateNav();
+    },
   },
   watch: {
     title(val, nv) {
-      console.log(val, nv)
-      this.updateNav()
+      console.log(val, nv);
+      this.updateNav();
     },
     show(val, nv) {
-      console.log(val, nv)
-    }
+      console.log(val, nv);
+    },
   },
   mounted() {
-    this.updateNav()
+    this.updateNav();
   },
   computed: {
     active() {
-      return false
-    }
-  }
-}
+      return false;
+    },
+  },
+};
 </script>

@@ -33,6 +33,7 @@ let sysConfig = {
         ],
         pcMenu: [
             { url: "/tabs", label: "tabs", select: true },
+            { url: "/msg", label: "消息弹出组件", select: true },
         ],
     },
 }

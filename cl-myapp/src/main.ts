@@ -1,15 +1,18 @@
-import { createApp } from 'vue'
+import { createApp, VueElement } from 'vue'
 import App from './App.vue'
-import router from "@router/index"
+import router, { vueRouters } from "@router/index"
 import utils from '@/ts/utils'
 import store from '@/store/index'
 import Components from '@components/index'
 import '@/css/style.css'
 
+
 //highlight 的样式，依赖包，组件
 import 'highlight.js/styles/atom-one-dark.css'
 import 'highlight.js/lib/common'
 import hljsVuePlugin from '@highlightjs/vue-plugin'
+
+
 
 
 const app = createApp(App)
@@ -22,3 +25,5 @@ app.use(router)
     .use(Components)
     .mount('#app')
 
+  
+    
