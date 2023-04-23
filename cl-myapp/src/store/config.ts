@@ -5,6 +5,7 @@ let sysConfig = {
         { url: "/pc", label: "PC端常用组件", submenu: "pcMenu" },
         { url: "/Vue3", label: "Vue3配置", submenu: "Vue3Menu" },
         { url: "/Vue2", label: "Vue2配置", submenu: "Vue2Menu" },
+        { url: "/netcore", label: ".NET CORE", submenu: "aspnetcore" },
     ],
     submenu: {
         home: [
@@ -32,6 +33,11 @@ let sysConfig = {
             { url: "/storage", label: "storage缓存封装", },
         ],
         pcMenu: [
+            { url: "/tabs", label: "tabs", select: true },
+            { url: "/msg", label: "消息弹出组件", select: true },
+        ],
+        aspnetcore: [
+            { url: "/netcore", label: ".NET CORE", select: true },
             { url: "/tabs", label: "tabs", select: true },
             { url: "/msg", label: "消息弹出组件", select: true },
         ],
